@@ -20,9 +20,15 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {              // Encoder on Master side
         if (IS_LAYER_ON(_LOWER)) { //  On _RAISE layer
             if (clockwise) {
-                tap_code(KC_RGHT); // Next song
+                tap_code(KC_WH_R); // Move wheel right
             } else {
-                tap_code(KC_LEFT); // Previous song
+                tap_code(KC_WH_L); // Move wheel left
+            }
+        } else if (IS_LAYER_ON(_RAISE)) { //  On _RAISE layer
+            if (clockwise) {
+                tap_code(KC_MS_R); // Move cursor right
+            } else {
+                tap_code(KC_MS_L); // Move cursor left
             }
         } else { // On other layers
             if (clockwise) {
@@ -38,11 +44,17 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             } else {
                 tap_code(KC_BRID); // Brightness down
             }
+        } else if (IS_LAYER_ON(_LOWER)) { //  On _RAISE layer
+            if (clockwise) {
+                tap_code(KC_MS_D); // Move cursor down
+            } else {
+                tap_code(KC_MS_U); // Move cursor up
+            }
         } else { // On other layers
             if (clockwise) {
-                tap_code(KC_PGDN); // Page Down
+                tap_code(KC_WH_D); // Move wheel down
             } else {
-                tap_code(KC_PGUP); // Page Up
+                tap_code(KC_WH_U); // Move wheel up
             }
         }
     }
